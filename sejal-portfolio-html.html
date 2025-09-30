@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sejal Mittal - Data Engineer & ML Enthusiast</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 50%, #e0e7ff 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.transparent {
+            background: transparent;
+            box-shadow: none;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #2563eb, #4f46e5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 2rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6, #4f46e5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            font-weight: bold;
+            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.3);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #2563eb, #4f46e5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #6b7280;
+            margin-bottom: 1rem;
+        }
+
+        .location {
+            font-size: 1.1rem;
+            color: #9ca3af;
+            margin-bottom: 2rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-links a {
+            text-decoration: none;
+            color: #374151;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .contact-links a:hover {
+            color: #2563eb;
+        }
+
+        .scroll-indicator {
+            animation: bounce 2s infinite;
+            color: #2563eb;
+            font-size: 2rem;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 0;
+        }
+
+        section.white-bg {
+            background: white;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #1f2937;
+        }
+
+        /* About Section */
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: #4b5563;
+            line-height: 1.8;
+        }
+
+        .about-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .skill-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .tag-blue { background: #dbeafe; color: #1e40af; }
+        .tag-indigo { background: #e0e7ff; color: #3730a3; }
+        .tag-purple { background: #ede9fe; color: #5b21b6; }
+        .tag-green { background: #d1fae5; color: #065f46; }
+        .tag-orange { background: #fed7aa; color: #9a3412; }
+        .tag-gray { background: #f3f4f6; color: #374151; }
+
+        /* Experience Section */
+        .experience-item {
+            background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
+            padding: 2rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .experience-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .experience-header {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .company-logo {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .company-logo.amazon { background: linear-gradient(135deg, #f97316, #ea580c); }
+        .company-logo.ericsson { background: linear-gradient(135deg, #2563eb, #1d4ed8); }
+
+        .experience-details h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .company-name {
+            color: #4b5563;
+            margin-bottom: 0.25rem;
+        }
+
+        .date {
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .experience-item ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .experience-item li {
+            padding: 0.5rem 0;
+            color: #374151;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+
+        .project-date {
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-card p {
+            color: #4b5563;
+            line-height: 1.6;
+        }
+
+        /* Education Section */
+        .education-item {
+            background: linear-gradient(135deg, #2563eb, #4f46e5);
+            padding: 2rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .education-item.vit {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+        }
+
+        .education-header {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .edu-logo {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .edu-logo.columbia { color: #2563eb; }
+        .edu-logo.vit { color: #4f46e5; }
+
+        .education-details h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-item p {
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #111827;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        footer h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: white;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #60a5fa;
+        }
+
+        .copyright {
+            color: #9ca3af;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            .subtitle { font-size: 1.2rem; }
+            .nav-links { display: none; }
+            .skills-grid, .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            .experience-header, .education-header {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container">
+            <div class="logo">SM</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="profile-image">SM</div>
+            <h1>Sejal Mittal</h1>
+            <p class="subtitle">Data Engineer & Machine Learning Enthusiast</p>
+            <p class="location">MS in Data Science @ Columbia University | Ex-Amazon</p>
+            <div class="contact-links">
+                <a href="mailto:sm5756@columbia.edu">📧 Email</a>
+                <a href="https://www.linkedin.com/in/mittal-sejal/" target="_blank">💼 LinkedIn</a>
+                <a href="#">📍 New York, NY</a>
+            </div>
+            <div class="scroll-indicator">↓</div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="white-bg">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <p>
+                    Hello! I'm Sejal Mittal, a Data Engineer and Machine Learning enthusiast currently pursuing my Master of Science in Data Science at Columbia University. With a strong foundation in data engineering, cloud computing, and machine learning, I'm passionate about building scalable data solutions that drive business impact.
+                </p>
+                <p>
+                    My journey in technology has taken me through various roles at Amazon and AWS, where I've led initiatives that achieved remarkable results including 99.92% storage reduction through database migration to Apache Iceberg, 80% cost reduction through infrastructure optimization, and significant improvements in processing efficiency through Spark migrations.
+                </p>
+                <p>
+                    As a Teaching Assistant for Cloud Computing, Machine Learning, and AI Ethics at Columbia, I'm committed to sharing knowledge and fostering the next generation of data professionals. I thrive on solving complex problems at the intersection of data engineering, machine learning, and cloud technologies.
+                </p>
+                <p>
+                    Beyond my technical pursuits, I'm actively involved in research, currently working on MLLMs as-a-judge frameworks for image editing at Adobe Research. My experience spans from predictive modeling for call tower optimization at Ericsson to developing comprehensive ML platforms at Amazon.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2>Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>💻 Programming & ML</h3>
+                    <div class="skill-tags">
+                        <span class="tag tag-blue">Python</span>
+                        <span class="tag tag-blue">NumPy</span>
+                        <span class="tag tag-blue">Pandas</span>
+                        <span class="tag tag-blue">Scikit-Learn</span>
+                        <span class="tag tag-blue">Keras</span>
+                        <span class="tag tag-blue">XGBoost</span>
+                        <span class="tag tag-blue">PySpark</span>
+                        <span class="tag tag-blue">SQL</span>
+                        <span class="tag tag-blue">R</span>
+                        <span class="tag tag-blue">Java</span>
+                        <span class="tag tag-blue">Ruby on Rails</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h3>☁️ Cloud Services</h3>
+                    <div class="skill-tags">
+                        <span class="tag tag-indigo">AWS</span>
+                        <span class="tag tag-indigo">Google Cloud Platform</span>
+                        <span class="tag tag-indigo">IBM Cloud</span>
+                        <span class="tag tag-indigo">Splunk</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h3>🗄️ Databases</h3>
+                    <div class="skill-tags">
+                        <span class="tag tag-purple">Amazon Redshift</span>
+                        <span class="tag tag-purple">DynamoDB</span>
+                        <span class="tag tag-purple">PostgreSQL</span>
+                        <span class="tag tag-purple">Snowflake</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h3>📊 Data Visualization</h3>
+                    <div class="skill-tags">
+                        <span class="tag tag-green">Tableau</span>
+                        <span class="tag tag-green">Seaborn</span>
+                        <span class="tag tag-green">Matplotlib</span>
+                        <span class="tag tag-green">TM1</span>
+                        <span class="tag tag-green">Power BI</span>
+                        <span class="tag tag-green">Data Dog</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <h3>🔧 AWS Expertise</h3>
+                <div class="skill-tags">
+                    <span class="tag tag-orange">Comprehend</span>
+                    <span class="tag tag-orange">Bedrock</span>
+                    <span class="tag tag-orange">Sagemaker</span>
+                    <span class="tag tag-orange">EMR</span>
+                    <span class="tag tag-orange">GLUE</span>
+                    <span class="tag tag-orange">S3</span>
+                    <span class="tag tag-orange">Athena</span>
+                    <span class="tag tag-orange">Kinesis</span>
+                    <span class="tag tag-orange">Quicksight</span>
+                    <span class="tag tag-orange">MWAA</span>
+                    <span class="tag tag-orange">Cloudwatch</span>
+                </div>
+            </div>
+
+            <div class="skill-card" style="margin-top: 2rem;">
+                <h3>🛠️ Other Technologies</h3>
+                <div class="skill-tags">
+                    <span class="tag tag-gray">ETL</span>
+                    <span class="tag tag-gray">Apache Airflow</span>
+                    <span class="tag tag-gray">Hadoop</span>
+                    <span class="tag tag-gray">Kubernetes</span>
+                    <span class="tag tag-gray">Cloud Computing</span>
+                    <span class="tag tag-gray">CI/CD</span>
+                    <span class="tag tag-gray">Git</span>
+                    <span class="tag tag-gray">ACID</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="white-bg">
+        <div class="container">
+            <h2>Work Experience</h2>
+
+            <!-- AWS -->
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="company-logo amazon">AWS</div>
+                    <div class="experience-details">
+                        <h3>Data Engineer Intern</h3>
+                        <p class="company-name">Amazon Web Services (AWS) | Seattle, WA</p>
+                        <p class="date">May 2025 - August 2025</p>
+                    </div>
+                </div>
+                <ul>
+                    <li>• Migrated a legacy database to Apache Iceberg format, achieving 99.92% storage reduction across AWS data lakes</li>
+                    <li>• Implemented time-travel querying and schema evolution capabilities supporting the team's financial audit requirements</li>
+                    <li>• Enabled multi-engine interoperability across Athena, Glue, and Spark, standardizing the tables for 10+ analytics teams</li>
+                </ul>
+            </div>
+
+            <!-- Amazon Data Engineer -->
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="company-logo amazon">AMZ</div>
+                    <div class="experience-details">
+                        <h3>Data Engineer</h3>
+                        <p class="company-name">Amazon | Bangalore, IN</p>
+                        <p class="date">July 2023 - August 2024</p>
+                    </div>
+                </div>
+                <ul>
+                    <li>• Developed an ML-driven payment prediction system, increasing customer segmentation efficiency by 30%</li>
+                    <li>• Migrated legacy EMR pipeline to Spark, reducing processing time by 58% and cutting infrastructure costs by 80%</li>
+                    <li>• Automated ML platform monitoring through Tableau and QuickSight, reducing manual stakeholder overhead by 33%</li>
+                </ul>
+            </div>
+
+            <!-- Amazon Software Engineer -->
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="company-logo amazon">AMZ</div>
+                    <div class="experience-details">
+                        <h3>Software Engineer</h3>
+                        <p class="company-name">Amazon | Bangalore, IN</p>
+                        <p class="date">Jan 2021 - June 2023</p>
+                    </div>
+                </div>
+                <ul>
+                    <li>• Accelerated large-scale data processing by migrating ops to Spark, cutting processing speed by 50%</li>
+                    <li>• Transitioned 20% of ETL and Database workloads to Spark, boosting scalability and reliability</li>
+                    <li>• Built an Operational Excellence dashboard in Ruby on Rails, boosting team efficiency by 27%</li>
+                </ul>
+            </div>
+
+            <!-- Ericsson -->
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="company-logo ericsson">E</div>
+                    <div class="experience-details">
+                        <h3>Machine Learning Intern</h3>
+                        <p class="company-name">Ericsson | Gurgaon, IN</p>
+                        <p class="date">April 2019 - June 2019</p>
+                    </div>
+                </div>
+                <ul>
+                    <li>• Analyzed call drop data with predictive models to identify high-risk areas for tower deployment</li>
+                    <li>• Enabled strategic placement of towers, reducing call failures by 12% and cutting analysis time by 5 days</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2>Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>🏆 Adobe Research: MLLMs as-a-judge</h3>
+                    <p class="project-date">September 2025 - Present</p>
+                    <p>Researched and benchmarked MLLM-as-a-Judge frameworks for image editing, evaluating faithfulness, controllability, precision, and aligning agentic vs direct paradigms with human preferences.</p>
+                </div>
+
+                <div class="project-card">
+                    <h3>🎓 Breast Cancer Detection</h3>
+                    <p class="project-date">Columbia University | Sept - Dec 2024</p>
+                    <p>Developed and evaluated five ML models to classify breast cancer as malignant or benign, achieving an F1-score of 0.975 with logistic regression after hyperparameter tuning.</p>
+                </div>
+
+                <div class="project-card">
+                    <h3>📊 Lung Cancer Survival Analysis</h3>
+                    <p class="project-date">Columbia University | Sept - Dec 2024</p>
+                    <p>Developed an interactive dashboard to perform Kaplan-Meier survival analysis on lung cancer patient data, uncovering insights on how treatment type, age, and gender influence survival outcomes.</p>
+                </div>
+
+                <div class="project-card">
+                    <h3>🌶️ Bell Pepper Classification</h3>
+                    <p class="project-date">VIT University | Apr - Oct 2020</p>
+                    <p>Constructed a novel CNN architecture model for Bell Pepper Classification, achieving an accuracy of ~97.91%. The paper was sent for publication at top journals and conferences such as IEEE Xplore.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="white-bg">
+        <div class="container">
+            <h2>Education</h2>
+
+            <div class="education-item">
+                <div class="education-header">
+                    <div class="edu-logo columbia">CU</div>
+                    <div class="education-details">
+                        <h3>Master of Science in Data Science</h3>
+                        <p>Columbia University in the city of New York</p>
+                        <p class="date">August 2024 - December 2025 | New York, NY</p>
+                        <p><strong>Coursework:</strong> Applied Machine Learning, Data Visualization, Statistics and Inference Modeling, Big Data Analytics</p>
+                        <p><strong>Leadership:</strong> Teaching Assistant for Cloud Computing, Machine Learning, AI and Ethics; Data Science Student Council</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="education-item vit">
+                <div class="education-header">
+                    <div class="edu-logo vit">VIT</div>
+                    <div class="education-details">
+                        <h3>Bachelor of Technology in ECE</h3>
+                        <p>Vellore Institute of Technology (VIT)</p>
+                        <p class="date">August 2017 - June 2021 | Vellore, IN</p>
+                        <p><strong>Specialization:</strong> IoT and Sensors</p>
+                        <p><strong>Coursework:</strong> Data Structures and Algorithms, Neural Networks and Deep Learning, AI with Python, Applied Linear Algebra</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <h3>Let's Connect</h3>
+            <div class="footer-links">
+                <a href="mailto:sm5756@columbia.edu">📧 Email</a>
+                <a href="https://www.linkedin.com/in/mittal-sejal/" target="_blank">💼 LinkedIn</a>
+            </div>
+            <p class="copyright">© 2025 Sejal Mittal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.remove('transparent');
+            } else {
+                navbar.classList.add('transparent');
+            }
+        });
+    </script>
+</body>
+</html>
